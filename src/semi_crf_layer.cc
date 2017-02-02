@@ -200,8 +200,8 @@ void SegConvEmbedding::construct_chart(cnn::ComputationGraph& cg,
   h.clear(); // The first dimension for h is the starting point, the second is length.
   h.resize(len);
 
-  
-  auto padding = cnn::expr::zeroes(cg, { zeros.size() });
+  unsigned zeros_dim = zeros.size();
+  auto padding = cnn::expr::zeroes(cg, { zeros_dim });
   for (unsigned i = 0; i < len; ++i) {
     unsigned max_j = i + len;
     if (max_seg_len) { max_j = i + max_seg_len; }
